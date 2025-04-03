@@ -1,0 +1,80 @@
+:root {
+    --bs-primary-rgb: 0, 87, 92;
+    --bs-link-color: #454545;
+    --bs-link-hover-color: #00575c;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #F7F7F7;
+}
+a {
+    color: rgba(33, 37, 41, 0.75);
+    text-decoration: none;
+}
+.img-responsive {
+    min-width: 60px;
+    max-width: 100%;
+    height: auto;
+}
+.btn-primary {
+    --bs-btn-bg: #00575c;
+    --bs-btn-border-color: #00575c;
+    --bs-btn-hover-bg: #005151;
+    --bs-btn-hover-border-color: #005151;
+    --bs-btn-active-bg: #005151;
+    --bs-btn-active-border-color: #005151;
+    --bs-btn-disabled-bg: #00575c;
+    --bs-btn-disabled-border-color: #00575c;
+}
+.btn-outline-primary {
+    --bs-btn-color: #00575c;
+    --bs-btn-border-color: #00575c;
+    --bs-btn-hover-bg: #00575c;
+    --bs-btn-hover-border-color: #00575c;
+    --bs-btn-active-bg: #010101;
+    --bs-btn-active-border-color: #00575c;
+    --bs-btn-disabled-color: #00575c;
+    --bs-btn-disabled-border-color: #00575c;
+}
+.nav-pills {
+    --bs-nav-pills-link-active-bg: #00575c;
+}
+.dropdown-item.active, .dropdown-item:active {
+    --bs-dropdown-link-active-bg: #00575c;
+    color: #fff !important;
+}
+.form-control:focus {
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+    border-color: #0e873f;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgb(36 118 24 / 25%);
+}
+.nav-link.active {
+    color: #00575c;
+    font-weight: 600;
+}
+.breadcrumb-item.active {
+    font-weight: 600;
+}
+.card-img-news  {
+    min-height: 200px;
+    max-height: 200px;
+}
+.card-img-product  {
+    min-height: 260px;
+    max-height: 260px;
+}
+.card-time {
+    position: absolute;
+    padding: .5rem;
+    padding-right: 1.5rem;
+    top: 1rem;
+    left: -2px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='135' height='38' viewBox='0 0 135 38' fill='none'%3E%3Cpath d='M0 38V4.5V0H135L120.471 19L135 38H0Z' fill='%23FFB800'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right;
+    color: #333;
+}
