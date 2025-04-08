@@ -38,7 +38,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             return RouterHelper.responseError("Số điện thoại đã tồn tại trên hệ thống");
         }
 
-        if (ValidateHelper.isValidPhoneNumber(request.getPhone())) {
+        if (!ValidateHelper.isValidPhoneNumber(request.getPhone())) {
             return RouterHelper.responseError("Số điện thoại không hợp lệ");
         }
 
@@ -72,7 +72,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             return RouterHelper.responseError("Không tìm thấy user");
         }
 
-        if (ValidateHelper.isValidPhoneNumber(request.getPhone())) {
+        if (!ValidateHelper.isValidPhoneNumber(request.getPhone())) {
             return RouterHelper.responseError("Số điện thoại không hợp lệ");
         }
 

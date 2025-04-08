@@ -2,6 +2,7 @@ package agile.mewshop.infrastructure.config.dbgenerator;
 
 import agile.mewshop.entities.User;
 import agile.mewshop.infrastructure.config.dbgenerator.repositories.DBGeneratorUserRepository;
+import agile.mewshop.infrastructure.constants.RoleConstant;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -46,6 +47,7 @@ public class DBGenerator {
             User dataUser = new User();
             dataUser.setUsername(userName);
             dataUser.setPassword(userPassword);
+            dataUser.setRole(RoleConstant.ADMIN);
 
             dbGeneratorUserRepository.save(dataUser);
         }

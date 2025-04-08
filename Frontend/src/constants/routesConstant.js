@@ -10,3 +10,7 @@ export const API_AUTHENTICATION = {
     REGISTER: API_URL + '/register',
     INFOMATION: API_URL + '/infomation',
 }
+
+export const API_ADMIN_PANEL = {
+    CATEGORIES: API_URL + '/admin/category-management'
+}

@@ -141,7 +141,7 @@ onMounted(() => {
                           <span>{{ o.date }}</span>
                       </div>
                       <div class="card-body">
-                          <p class="card-text">
+                          <div class="card-text">
                               <table class="table table-borderless align-middle">
                                   <tbody>
 
@@ -158,7 +158,7 @@ onMounted(() => {
 
                                   </tbody>
                               </table>
-                          </p>
+                            </div>
                           <div class="card-title text-secondary">Receiver: {{ o?.fullname }} - {{ o?.phone }}</div>
                           <div class="card-title text-secondary">Address: {{ o?.address }}</div>
                           <div class="d-flex justify-content-end">
@@ -175,7 +175,7 @@ onMounted(() => {
                           <span>{{ o.date }}</span>
                       </div>
                       <div class="card-body">
-                          <p class="card-text">
+                          <div class="card-text">
                               <table class="table table-borderless align-middle">
                                   <tbody>
 
@@ -192,7 +192,7 @@ onMounted(() => {
 
                                   </tbody>
                               </table>
-                          </p>
+                            </div>
                           <div class="card-title text-secondary">Receiver: {{ o?.fullname }} - {{ o?.phone }}</div>
                           <div class="card-title text-secondary">Address: {{ o?.address }}</div>
                           <div class="d-flex justify-content-end">
@@ -209,7 +209,7 @@ onMounted(() => {
                           <span>{{ o.date }}</span>
                       </div>
                       <div class="card-body">
-                          <p class="card-text">
+                          <div class="card-text">
                               <table class="table table-borderless align-middle">
                                   <tbody>
 
@@ -226,7 +226,7 @@ onMounted(() => {
 
                                   </tbody>
                               </table>
-                          </p>
+                            </div>
                           <div class="card-title text-secondary">Receiver: {{ o?.fullname }} - {{ o?.phone }}</div>
                           <div class="card-title text-secondary">Address: {{ o?.address }}</div>
                           <div class="d-flex justify-content-end">

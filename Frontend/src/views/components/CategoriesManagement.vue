@@ -1,4 +1,6 @@
 <script setup>
+import { API_ADMIN_PANEL } from '@/constants/routesConstant';
+import requestAPI from '@/services/requestApiService';
 import useAuthStore from '@/stores/useAuthStore';
 import { inject, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -27,9 +29,24 @@ const model = ref({
 
 
 const loadPage = (page) => {
-  lstData.value = _DB.value.orderBy('id', 'DESC').getPage(page);
-  currentPage.value = lstData.value.currentPage;
-  maxPage.value = lstData.value.totalPage;
+  requestAPI
+    .get(`${API_ADMIN_PANEL.CATEGORIES}`, {
+      params: {
+        page: page,
+        size: pageSize
+      }
+    })
+    .then(({ data: response }) => {
+      lstData.value = response.data;
+      currentPage.value = response.data.currentPage + 1;
+      maxPage.value = response.data.totalPages;
+      if (maxPage.value < 1) {
+        currentPage.value = 0;
+      }
+    })
+    .catch((error) => {
+      msgError.value = error?.response?.data?.message || 'An error occurred, please try again in a few minutes!';
+    })
 };
 
 const clearMsg = () => {
@@ -72,18 +89,17 @@ const handleAdd = () => {
     return;
   }
 
-  if (_DB.value.has({column: 'name', value: model.value.name})) {
-    return msgError.value = 'The item name already exists';
-  }
+  requestAPI
+    .post(`${API_ADMIN_PANEL.CATEGORIES}`, model.value)
+    .then(({ data: response }) => {
+      msgSuccess.value = response.message;
+      clearForm();
+      loadPage(currentPage.value);
+    })
+    .catch((error) => {
+      msgError.value = error?.response?.data?.message || 'Add new failed';
+    })
 
-  if (_DB.value.insert(model.value)) {
-    msgSuccess.value = 'Added successfully';
-  } else {
-    return msgError.value = 'Add new failed';
-  }
-
-  clearForm();
-  loadPage(currentPage.value);
 };
 
 const handleUpdate = () => {
@@ -91,31 +107,34 @@ const handleUpdate = () => {
     return;
   }
 
-  if (_DB.value.has({column: 'name', value: model.value.name, id: model.value.id})) {
-    return msgError.value = 'The item name already exists';
-  }
-
-  if (_DB.value.update(model.value)) {
-    msgSuccess.value = 'Saved successfully';
-  } else {
-    return msgError.value = 'Saved failed';
-  }
-  clearForm();
-  loadPage(currentPage.value);
+  requestAPI
+    .put(`${API_ADMIN_PANEL.CATEGORIES}/${model.value.id}`, model.value)
+    .then(({ data: response }) => {
+      msgSuccess.value = response.message;
+      clearForm();
+      loadPage(currentPage.value);
+    })
+    .catch((error) => {
+      msgError.value = error?.response?.data?.message || 'Saved failed';
+    })
 };
 
 const handleDelete = () => {
   clearMsg();
-  if (_DB.value.delete(model.value.id)) {
-    msgSuccess.value = 'Deleted successfully';
-  } else {
-    return msgError.value = 'Deleted failed';
-  }
-  loadPage(currentPage.value);
+  requestAPI
+    .delete(`${API_ADMIN_PANEL.CATEGORIES}/${model.value.id}`)
+    .then(({ data: response }) => {
+      msgSuccess.value = response.message;
+      loadPage(currentPage.value);
+    })
+    .catch((error) => {
+      msgError.value = error?.response?.data?.message || 'Deleted failed';
+    })
+  
 };
 
 onMounted(() => {
-  if(!authStore?.user || !authStore?.user.adm) {
+  if(!authStore?.user || authStore?.user.role !== 'ADMIN') {
     return router.push({name: 'home'});
   }
 
@@ -151,7 +170,7 @@ onMounted(() => {
                 </tr>
                 <template v-else>
                   <tr v-for="o in lstData?.data" :key="o.id">
-                      <td class="align-middle">{{ o.id }}</td>
+                      <td class="align-middle">{{ o.orderNumber }}</td>
                       <td class="align-middle">{{ o.name }}</td>
                       <td class="align-middle">
                         <div class="d-flex g-3">
@@ -170,9 +189,9 @@ onMounted(() => {
         </div>
       </div>
       <div class="d-flex align-items-center justify-content-center py-4">
-        <button class="btn btn-primary rounded-5" @click="loadPage(currentPage - 1)"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="btn btn-primary rounded-5" :class="{disabled: currentPage <= 1 }" @click="loadPage(currentPage - 1)"><i class="fa-solid fa-chevron-left"></i></button>
         <span class="px-4">Page {{ currentPage }} / {{ maxPage }}</span>
-        <button class="btn btn-primary rounded-5" @click="loadPage(currentPage + 1)"><i class="fa-solid fa-chevron-right"></i></button>
+        <button class="btn btn-primary rounded-5" :class="{disabled: currentPage >= maxPage }" @click="loadPage(currentPage + 1)"><i class="fa-solid fa-chevron-right"></i></button>
       </div>
     </div>
 

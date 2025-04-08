@@ -26,7 +26,7 @@ const setComponent = name => {
 };
 
 onMounted(() => {
-  if(!authStore?.user || !authStore?.user.adm) {
+  if(!authStore?.user || authStore?.user.role !== 'ADMIN') {
     return router.push({name: 'home'});
   }
 });

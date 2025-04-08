@@ -45,7 +45,7 @@ const _COUNT_CART = inject('_COUNT_CART');
                     <span>{{ authStore?.user.username }}</span>
                   </div>
                   <ul class="dropdown-menu border-0 shadow-sm">
-                    <li v-if="authStore?.user.adm">
+                    <li v-if="authStore?.user.role === 'ADMIN'">
                       <RouterLink class="dropdown-item text-primary" :to="{name: 'admin-panel'}">Admin Panel</RouterLink>
                     </li>
                     <li><RouterLink class="dropdown-item" :to="{name: 'account'}">Account</RouterLink></li>
