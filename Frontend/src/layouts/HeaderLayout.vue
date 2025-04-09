@@ -4,7 +4,6 @@ import { inject } from 'vue';
 
 const authStore = useAuthStore()
 
-const _COUNT_CART = inject('_COUNT_CART');
 
 </script>
 
@@ -52,44 +51,14 @@ const _COUNT_CART = inject('_COUNT_CART');
                     <li><RouterLink class="dropdown-item" :to="{name: 'logout' }">Logout</RouterLink></li>
                   </ul>
               </span>
-              <RouterLink class="btn p-0 border-0 position-relative ms-3" :to="{name: 'cart'}">
-                  <i class="fa-solid fa-cart-shopping text-primary"></i>
-                  <span class="badge rounded-pill bg-warning">{{ _COUNT_CART }}</span>
-              </RouterLink>
+              
             </div>
           </div>
 
 
-          <div class="offcanvas offcanvas-start d-sm-none" id="offcanvasDarkNavbar">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">MENU</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <div class="navbar-nav">
-                <RouterLink class="nav-link" aria-current="page" :to="{name: 'categories'}">list products</RouterLink>
-                <RouterLink class="nav-link" aria-current="page" :to="{name: 'about-us'}">About Us</RouterLink>
-                <RouterLink class="nav-link" aria-current="page" :to="{name: 'contact'}">Contact</RouterLink>
-              </div>
-            </div>
-          </div>
 
       </div>
     </nav>
-    <div class="container d-none d-md-block border-top ">
-      <div class="d-flex align-items-center justify-content-around text-uppercase">
-        <ul class="nav nav-underline">
-          <li class="nav-item">
-            <RouterLink class="nav-link px-4" aria-current="page" :to="{name: 'categories'}">List products</RouterLink>
-          </li>
-          <li class="nav-item">
-            <RouterLink class="nav-link px-4" aria-current="page" :to="{name: 'about-us'}">About Us</RouterLink>
-          </li>
-          <li class="nav-item">
-            <RouterLink class="nav-link px-4" aria-current="page" :to="{name: 'contact'}">Contact</RouterLink>
-          </li>
-        </ul>
-      </div>
-    </div>
+    
   </header>
 </template>

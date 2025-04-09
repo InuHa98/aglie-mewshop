@@ -8,7 +8,7 @@ import { useRouter } from 'vue-router';
 const authStore = useAuthStore();
 
 const _DB = inject('_DB');
-const _COUNT_CART = inject('_COUNT_CART');
+// const _COUNT_CART = inject('_COUNT_CART');
 const router = useRouter();
 
 const msgSuccess = ref(null);
@@ -29,6 +29,8 @@ const handleSubmit = () => {
       const token = response.data
       if (authStore.login(token)) {
         msgSuccess.value = 'Log in successfully';
+        // _COUNT_CART.value = _DB.value.setWhere(o => o.userId == authStore?.user?.id).getAll('GioHang').length;
+        alert("đăng nhập thành công")
         router.push({name: 'home'});
       }
     })
@@ -36,7 +38,7 @@ const handleSubmit = () => {
       msgError.value = error?.response?.data?.message || 'Không thể đăng nhập'
     })
 
-  _COUNT_CART.value = _DB.value.setWhere(o => o.userId == user.id).getAll('GioHang').length;
+  
   
 };
 

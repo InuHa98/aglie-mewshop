@@ -46,9 +46,9 @@ onMounted(() => {
         <div class="position-relative">
           <h2>Admin Panel</h2>
           <ul class="nav flex-column">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <RouterLink class="nav-link px-0" :class="{active: component == PurchaseManagement}" :to="{name: 'admin-panel-component', params: {component: 'purchase-management'}}" @click="setComponent(PurchaseManagement)">Purchase Management</RouterLink>
-            </li>
+            </li> -->
             <li class="nav-item">
               <RouterLink class="nav-link px-0" :class="{active: component == CategoriesManagement}" :to="{name: 'admin-panel-component', params: {component: 'categories-management'}}" @click="setComponent(CategoriesManagement)">Categories Management</RouterLink>
             </li>

@@ -32,7 +32,7 @@ const loadPage = (page) => {
   requestAPI
     .get(`${API_ADMIN_PANEL.CATEGORIES}`, {
       params: {
-        page: page,
+        page: page < 1 ? 1 : page,
         size: pageSize
       }
     })

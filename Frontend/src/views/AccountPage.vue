@@ -68,7 +68,7 @@ onMounted(() => {
               <RouterLink class="nav-link px-0 active" aria-current="page" :to="{ name: 'account-information'}">Login information</RouterLink>
             </li>
             <li class="nav-item">
-              <RouterLink class="nav-link px-0" :to="{name: 'account-purchase'}">Purchase History</RouterLink>
+              <RouterLink>Purchase History</RouterLink>
             </li>
           </ul>
         </div>
