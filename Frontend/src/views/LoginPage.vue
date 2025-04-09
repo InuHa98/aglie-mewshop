@@ -28,6 +28,7 @@ const handleSubmit = () => {
     .then(({ data: response }) => {
       const token = response.data
       if (authStore.login(token)) {
+        _COUNT_CART.value = _DB.value.setWhere(o => o.userId == authStore?.user?.id).getAll('GioHang').length;
         msgSuccess.value = 'Log in successfully';
         router.push({name: 'home'});
       }
@@ -35,8 +36,6 @@ const handleSubmit = () => {
     .catch((error) => {
       msgError.value = error?.response?.data?.message || 'Không thể đăng nhập'
     })
-
-  _COUNT_CART.value = _DB.value.setWhere(o => o.userId == user.id).getAll('GioHang').length;
   
 };
 
