@@ -4,8 +4,11 @@ import HeaderLayout from './layouts/HeaderLayout.vue';
 import FooterLayout from './layouts/FooterLayout.vue';
 import { computed, provide, ref } from 'vue';
 import Database from './databases';
+import useAuthStore from './stores/useAuthStore';
 
 const router = useRouter();
+
+const authStore = useAuthStore();
 
 const currentRoute = computed(() => {
     return router.currentRoute.value.name;
@@ -14,9 +17,10 @@ const currentRoute = computed(() => {
 
 
 const _DB = ref(new Database());
-const _COUNT_CART = ref(_DB.value.setWhere(o => o.userId == parseInt(user_id)).getAll('GioHang').length);
+const _USER = ref(authStore.user);
+const _COUNT_CART = ref(_DB.value.setWhere(o => o.id == _USER?.id).getAll('GioHang').length);
 
-
+provide('_USER', _USER);
 provide('_COUNT_CART', _COUNT_CART);
 provide('_DB', _DB);
 
