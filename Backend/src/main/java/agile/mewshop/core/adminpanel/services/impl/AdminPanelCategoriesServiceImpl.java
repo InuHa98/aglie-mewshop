@@ -61,6 +61,7 @@ public class AdminPanelCategoriesServiceImpl implements AdminPanelCategoriesServ
             return RouterHelper.responseError("Item not found");
         }
 
+        adminPanelCategoriesRepository.deleteAllProductByCategory(category.getId());
         adminPanelCategoriesRepository.delete(category);
         return RouterHelper.responseSuccess("Deleted successfully");
     }

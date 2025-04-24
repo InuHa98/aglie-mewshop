@@ -5,8 +5,10 @@ import agile.mewshop.core.adminpanel.model.response.AdminPanelCategoryResponse;
 import agile.mewshop.repositories.CategoryRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface AdminPanelCategoriesRepository extends CategoryRepository {
@@ -36,5 +38,16 @@ public interface AdminPanelCategoriesRepository extends CategoryRepository {
             (:id IS NULL OR id != :id)
     """, nativeQuery = true)
     boolean isExistsName(String name, String id);
+
+
+    @Modifying
+    @Transactional
+    @Query(value = """
+        DELETE
+        FROM product
+        WHERE
+            id_category = :idCategory
+    """, countQuery = "SELECT 1", nativeQuery = true)
+    int deleteAllProductByCategory(String idCategory);
 
 }
