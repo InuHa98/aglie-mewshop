@@ -12,5 +12,6 @@ export const API_AUTHENTICATION = {
 }
 
 export const API_ADMIN_PANEL = {
-    CATEGORIES: API_URL + '/admin/category-management'
+    CATEGORIES: API_URL + '/admin/category-management',
+    PRODUCTS: API_URL + '/admin/product-management'
 }

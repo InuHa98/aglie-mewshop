@@ -44,7 +44,6 @@ const useAuthStore = defineStore('authUser', () => {
       logout()
       return false
     }
-
     return true
   }
 

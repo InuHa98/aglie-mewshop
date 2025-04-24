@@ -1,11 +1,13 @@
 package agile.mewshop.infrastructure.common;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import agile.mewshop.infrastructure.constants.RestApiStatus;
 
 @Setter
 @Getter
+@Builder
 public class ApiResponse {
 
     private RestApiStatus status;
